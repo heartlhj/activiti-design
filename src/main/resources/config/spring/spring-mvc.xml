@@ -60,7 +60,6 @@
 		<!-- <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
 			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/> -->
 	</context:component-scan>
-
 	<!-- freemarker的配置 -->
 	<bean id="freemarkerConfigurer"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -76,7 +75,6 @@
 				<prop key="number_format">#.##</prop>
 				<!-- 配置自定义的freemarker异常处理 -->
 				<!-- ignore,debug,html_debug,rethrow，或者异常处理类 
-				<prop key="template_exception_handler">com.ruizhisoft.framework.common.exception.FreemarkerExceptionHandler
 				</prop>
 				-->
 			</props>
@@ -111,12 +109,11 @@
 		p:basename="i18n/messages" />
 
 
-	<!-- 静态文件转给容器处理 -->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
-
-
+	<!--  上传文件定义大小 -->
+	<bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		  p:defaultEncoding="utf-8">
+		<property name="maxUploadSize" value="50048000" />
+	</bean>
 	<mvc:default-servlet-handler default-servlet-name="default"></mvc:default-servlet-handler>
-
-
-
 </beans>

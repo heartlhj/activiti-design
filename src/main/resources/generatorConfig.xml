@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<!-- 设置mysql驱动路径 -->
+<classPathEntry location="C:\Users\75449\.m2\repository\mysql\mysql-connector-java\5.1.28\mysql-connector-java-5.1.28.jar" />
+<!-- 此处指定生成针对MyBatis3的DAO -->
+  <context id="context1"  targetRuntime="MyBatis3">
+  <commentGenerator>  
+    <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+    <property name="suppressAllComments" value="true" />  
+  </commentGenerator>   
+  <!-- jdbc连接信息 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
+    connectionURL="jdbc:mysql://localhost:3306/activiti-design"
+    userId="root" password="1234" />
+    
+    <!-- java类型处理器
+        用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+        注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+    
+    <javaTypeResolver type="com.generator.MyJavaTypeResolver">-->
+    <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+        
+<!--             true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+            false：默认,
+                scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long；
+                scale=0;length[5,9]：使用Integer；
+                scale=0;length<5：使用Short； -->
+        
+        <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    
+    <!-- 生成模型的包名和位置（报错就把位置改成项目的名称） -->
+    <javaModelGenerator targetPackage="com.lhj.activiti.design.model" targetProject="F:\Work\myself\activiti-design\src\main\java" />
+    <!-- 生成映射文件的包名和位置 -->
+    <sqlMapGenerator targetPackage="com.lhj.activiti.design.mapper" targetProject="F:\Work\myself\activiti-design\src\main\java" />
+    <!-- 生成DAO的类文件以及配置文件 -->
+    <javaClientGenerator targetPackage="com.lhj.activiti.design.dao" targetProject="F:\Work\myself\activiti-design\src\main\java" type="XMLMAPPER" />
+    <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
+     <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 --> 
+    <table schema="" tableName="USER" domainObjectName="User"
+    		enableCountByExample="false"  enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false" >
+    </table>
+  </context>
+</generatorConfiguration>
