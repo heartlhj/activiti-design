@@ -64,6 +64,36 @@
 		<servlet-name>spring-mvc</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+
+	<!-- Modeler的Rest服务 -->
+	<servlet>
+		<servlet-name>ModelRestServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-mvc-modeler.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModelRestServlet</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Rest接口 -->
+	<servlet>
+		<servlet-name>RestServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-mvc-rest.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 	
 	<session-config>
         <session-timeout>20</session-timeout>

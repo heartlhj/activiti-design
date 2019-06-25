@@ -16,6 +16,7 @@
         <freemarker.version>2.3.28</freemarker.version>
         <servlet.version>3.1.0</servlet.version>
         <mybatis-spring.version>2.0.0</mybatis-spring.version>
+        <activiti.version>5.22.0</activiti.version>
 
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
         <lombok.version>1.18.4</lombok.version>
@@ -226,6 +227,31 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
             <version>${maven-war-plugin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-modeler</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-diagram-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-cxf</artifactId>
+            <version>${activiti.version}</version>
         </dependency>
     </dependencies>
 
