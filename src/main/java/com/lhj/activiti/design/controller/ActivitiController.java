@@ -1,0 +1,292 @@
+package com.lhj.activiti.design.controller;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.lhj.activiti.design.dean.ActivitiModelDto;
+import org.activiti.bpmn.converter.BpmnXMLConverter;
+import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.bpmn.model.Process;
+import org.activiti.editor.constants.ModelDataJsonConstants;
+import org.activiti.editor.language.json.converter.BpmnJsonConverter;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.repository.Deployment;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.awt.print.Pageable;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.springframework.beans.BeanUtils.copyProperties;
+
+
+@Controller("activitiController")
+
+public class ActivitiController{
+    private static Logger LOG = LoggerFactory.getLogger(ActivitiController.class);
+    @Autowired
+    private RepositoryService repositoryService;
+
+    /**
+     * 前端浏览list页地址
+     * @return
+     */
+    @RequestMapping({"/page"})
+    @ResponseBody
+    public void page() {
+        Long count = repositoryService.createModelQuery().count();
+        List<org.activiti.engine.repository.Model> list = repositoryService.createModelQuery().
+                orderByLastUpdateTime().desc().
+                listPage(1,10);
+    }
+
+
+//    @RequestMapping(
+//            value = {"copyForm/{id}"},
+//            method = {RequestMethod.GET}
+//    )
+//    public String createForm(@PathVariable("id") String id, Model model) {
+//        ActivitiModelDto activitiModelDto = new ActivitiModelDto();
+//        activitiModelDto.setId(id);
+//        this.setCommonData(model);
+//        model.addAttribute("op", "复制模型");
+//        model.addAttribute("d", activitiModelDto);
+//        return "work/activiti/activiti-copyForm";
+//    }
+
+    @RequestMapping(
+            value = {"createModel"},
+            method = {RequestMethod.POST}
+    )
+    public void createModel(Model model, ActivitiModelDto d, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectNode editorNode = objectMapper.createObjectNode();
+            editorNode.put("id", "canvas");
+            editorNode.put("resourceId", "canvas");
+            ObjectNode stencilSetNode = objectMapper.createObjectNode();
+            stencilSetNode.put("namespace", "http://b3mn.org/stencilset/bpmn2.0#");
+            editorNode.put("stencilset", stencilSetNode);
+            org.activiti.engine.repository.Model modelData = repositoryService.newModel();
+
+            ObjectNode modelObjectNode = objectMapper.createObjectNode();
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, d.getName());
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
+            String description = d.getDescription();
+            description = StringUtils.defaultString(description);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, description);
+            modelData.setMetaInfo(modelObjectNode.toString());
+            modelData.setName(d.getName());
+            modelData.setKey(StringUtils.defaultString(d.getKey()));
+            repositoryService.saveModel(modelData);
+            repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
+
+            response.sendRedirect(request.getContextPath() + "/modeler.html?modelId=" + modelData.getId());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @RequestMapping(value = "deleteModel",method = {RequestMethod.POST})
+    public void delete(Model model, @RequestParam("modelIds") String modelIds) {
+        String message = "删除成功";
+        if(StringUtils.isNotEmpty(modelIds)){
+                repositoryService.deleteModel(modelIds);
+        }
+    }
+
+    @RequestMapping(value = "model/import")
+    public void deployementProcessDefinitionByString(MultipartFile file){
+        try {
+            String message = "导入成功";
+//            Model modelData = repositoryService.getModel(modelId);
+//            ObjectNode modelNode = (ObjectNode) new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
+//            byte[] bpmnBytes = null;
+//            BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+//            bpmnBytes = new BpmnXMLConverter().convertToXML(model);
+            InputStream inputStream = null;
+            inputStream = file.getInputStream();
+            InputStream inputStream1 = file.getInputStream();
+
+            BpmnXMLConverter converter = new BpmnXMLConverter();
+            XMLInputFactory factory = XMLInputFactory.newInstance();
+            XMLStreamReader reader1 = factory.createXMLStreamReader(inputStream1);//createXmlStreamReader
+            //将xml文件转换成BpmnModel
+            BpmnModel bpmnModel = converter.convertToBpmnModel(reader1);
+            List<Process> processes = bpmnModel.getProcesses();
+            String name = "";
+            for (Process process : processes) {
+                name = process.getName();
+            }
+            byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(bpmnModel);
+            ObjectNode jsonNodes = new BpmnJsonConverter().convertToJson(bpmnModel);
+//            BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String description = name;
+            ObjectNode modelObjectNode = objectMapper.createObjectNode();
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, name);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
+            description = StringUtils.defaultString(description);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, description);
+            org.activiti.engine.repository.Model modelData = repositoryService.newModel();
+            modelData.setMetaInfo(modelObjectNode.toString());
+            modelData.setName(name);
+            modelData.setKey(StringUtils.defaultString(name));
+            repositoryService.saveModel(modelData);
+            repositoryService.addModelEditorSource(modelData.getId(), jsonNodes.toString().getBytes("utf-8"));
+
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//            StringBuilder sb = new StringBuilder();
+//            String line = null;
+//            while ((line = reader.readLine()) != null) {
+//                sb.append(line);
+//            }
+//            inputStream.close();
+//            String text = sb.toString();
+//            System.out.println(name);
+//            Deployment deployment = repositoryService//获取流程定义和部署对象相关的Service  
+//                    .createDeployment()//创建部署对象  
+//                    .addString(name, text)
+//                    .deploy();//完成部署  
+//            System.out.println("部署ID：" + deployment.getId());//1  
+//            System.out.println("部署时间：" + deployment.getDeploymentTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("导入失败");
+        }
+    }
+
+    /**
+     * 根据Model部署流程
+     */
+    @RequestMapping(value = "deploy",method = {RequestMethod.POST})
+    public void deploy(@RequestParam("modelId") String modelId, Model models) {
+        try {
+            String message = "部署成功";
+            org.activiti.engine.repository.Model modelData = repositoryService.getModel(modelId);
+            ObjectNode modelNode = (ObjectNode) new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
+            byte[] bpmnBytes = null;
+
+            BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+            bpmnBytes = new BpmnXMLConverter().convertToXML(model);
+
+            String processName = modelData.getName() + ".bpmn20.xml";
+            Deployment deployment = repositoryService.createDeployment().name(modelData.getName()).addString(processName, new String(bpmnBytes)).deploy();
+        } catch (Exception e) {
+            LOG.error("根据模型部署流程失败：modelId={}", modelId, e);
+        }
+    }
+
+    @RequestMapping(value = "export",method = {RequestMethod.GET})
+    public void export(@RequestParam(required = false) String modelId,
+                       HttpServletRequest request,HttpServletResponse response) {
+        try {
+            org.activiti.engine.repository.Model modelData = repositoryService.getModel(modelId);
+            BpmnJsonConverter jsonConverter = new BpmnJsonConverter();
+            byte[] modelEditorSource = repositoryService.getModelEditorSource(modelData.getId());
+
+            JsonNode editorNode = new ObjectMapper().readTree(modelEditorSource);
+            BpmnModel bpmnModel = jsonConverter.convertToBpmnModel(editorNode);
+
+            // 处理异常
+            if (bpmnModel.getMainProcess() == null) {
+                response.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
+                response.getOutputStream().println("no main process, can't export ");
+                response.flushBuffer();
+                return;
+            }
+
+            String filename = "";
+            byte[] exportBytes = null;
+
+            String mainProcessId = bpmnModel.getMainProcess().getId();
+
+            BpmnXMLConverter xmlConverter = new BpmnXMLConverter();
+            exportBytes = xmlConverter.convertToXML(bpmnModel);
+
+            filename = mainProcessId + ".bpmn20.xml";
+            String agent = request.getHeader("USER-AGENT");    // 获取浏览器类型
+            // Edge
+            if (null != agent && -1 != agent.indexOf("Edge")) {
+                filename = java.net.URLEncoder.encode(filename, "UTF-8");
+                // Firefox
+            } else if (null != agent && -1 != agent.indexOf("Firefox")) {
+                filename = new String(filename.getBytes("UTF-8"), "iso-8859-1");
+                // Chrome或360
+            } else if (null != agent && -1 != agent.indexOf("Chrome")) {
+                filename = new String(filename.getBytes("UTF-8"), "iso-8859-1");
+            } else {
+                filename = java.net.URLEncoder.encode(filename, "UTF-8");
+            }
+
+            ByteArrayInputStream in = new ByteArrayInputStream(exportBytes);
+            IOUtils.copy(in, response.getOutputStream());
+
+            response.setHeader("Content-Disposition", "attachment; filename=" + filename);
+
+//            response.flushBuffer();
+            OutputStream out;
+            out = response.getOutputStream();
+            //写文件
+            int b;
+            while((b = in.read()) != -1) {
+                out.write(b);
+            }
+            in.close();
+            out.close();
+
+
+        } catch (Exception e) {
+            LOG.error("导出model的xml文件失败：modelId={}, type={}", modelId, e);
+        }
+    }
+
+
+    @RequestMapping(value = "model/copy",method = {RequestMethod.POST})
+    public void copy(ActivitiModelDto d, Model models){
+        try {
+            String message = "复制成功";
+            org.activiti.engine.repository.Model modelData = repositoryService.getModel(d.getId());
+            ObjectNode modelNode = (ObjectNode) new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
+
+            BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+
+            ObjectNode jsonNodes = new BpmnJsonConverter().convertToJson(model);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String description = d.getDescriptionCopy();
+            String name = d.getNameCopy();
+            ObjectNode modelObjectNode = objectMapper.createObjectNode();
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, name);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
+            description = StringUtils.defaultString(description);
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, description);
+            org.activiti.engine.repository.Model modelDataNow = repositoryService.newModel();
+            modelDataNow.setMetaInfo(modelObjectNode.toString());
+            modelDataNow.setName(name);
+            modelDataNow.setKey(StringUtils.defaultString(name));
+            repositoryService.saveModel(modelDataNow);
+            repositoryService.addModelEditorSource(modelDataNow.getId(), jsonNodes.toString().getBytes("utf-8"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("复制失败");
+        }
+    }
+}

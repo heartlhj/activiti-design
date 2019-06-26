@@ -27,6 +27,7 @@
 	<!-- mybatis -->
 	<import resource="./application-mybatis.xml"/>
 
+	<import resource="./spring-activiti.xml"/>
 	<context:component-scan base-package="com.lhj">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>

@@ -3,16 +3,13 @@
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>${systemName!"RuiZhi"}</title>
+<#include "index-head.ftl">
 </head>
+<script type="text/javascript" src="${contextPath}/static/js/ini/index.js"></script>
 
 <body>
 
 	<div class="login-main">
-		<div class="logo-show"><embed src="./template/img/login/logo.svg" type="image/svg+xml" pluginspage="img/"></div>
 		<div class="login-body">
 			<!-- Advanced login -->
 			<form action="/login/login" method="POST" style="height:100%">

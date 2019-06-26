@@ -12,21 +12,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from USER
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from user
+    delete from USER
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.lhj.activiti.design.model.User" >
-    insert into user (ID, NAME, AGE
+    insert into USER (ID, NAME, AGE
       )
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.lhj.activiti.design.model.User" >
-    insert into user
+    insert into USER
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -51,7 +51,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.lhj.activiti.design.model.User" >
-    update user
+    update USER
     <set >
       <if test="name != null" >
         NAME = #{name,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lhj.activiti.design.model.User" >
-    update user
+    update USER
     set NAME = #{name,jdbcType=VARCHAR},
       AGE = #{age,jdbcType=INTEGER}
     where ID = #{id,jdbcType=VARCHAR}

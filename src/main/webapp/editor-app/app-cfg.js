@@ -19,5 +19,5 @@
 'use strict';
 
 ACTIVITI.CONFIG = {
-	'contextRoot' : '/activiti-design/service',
+	'contextRoot' : '/service',
 };

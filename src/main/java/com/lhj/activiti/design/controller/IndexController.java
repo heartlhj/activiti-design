@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 @Controller
 public class IndexController {
@@ -25,7 +26,7 @@ public class IndexController {
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response, Model model){
         logger.info("进入");
         User user = new User();
-        user.setId("111");
+        user.setId(UUID.randomUUID().toString());
         user.setName("45");
         user.setAge(11);
         userService.insert(user);

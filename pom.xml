@@ -17,6 +17,7 @@
         <servlet.version>3.1.0</servlet.version>
         <mybatis-spring.version>2.0.0</mybatis-spring.version>
         <activiti.version>5.22.0</activiti.version>
+        <jackson.databind.version>2.9.8</jackson.databind.version>
 
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
         <lombok.version>1.18.4</lombok.version>
@@ -47,6 +48,12 @@
         </profile>
     </profiles>
     <dependencies>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.databind.version}</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -130,11 +137,11 @@
             <version>${springframework.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-messaging</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-messaging</artifactId>-->
+            <!--<version>${springframework.version}</version>-->
+        <!--</dependency>-->
         <!-- spring security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -233,6 +240,12 @@
             <artifactId>activiti-engine</artifactId>
             <version>${activiti.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-modeler</artifactId>
@@ -252,6 +265,11 @@
             <groupId>org.activiti</groupId>
             <artifactId>activiti-cxf</artifactId>
             <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.uuid</groupId>
+            <artifactId>java-uuid-generator</artifactId>
+            <version>3.1.3</version>
         </dependency>
     </dependencies>
 
@@ -275,10 +293,16 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
+                    <nonFilteredFileExtensions>
+                        <!-- 过滤流程定义资源文件 -->
+                        <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>bar</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>png</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>bpmn</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.appfuse.plugins</groupId>
                 <artifactId>maven-warpath-plugin</artifactId>
