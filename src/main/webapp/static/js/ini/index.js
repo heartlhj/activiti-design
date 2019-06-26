@@ -1,5 +1,12 @@
 $(function () {
-    debugger;
-    var contextPath = contextPath;
-    alert(contextPath);
+    WorkFlowMain.init();
+})
+var WorkFlowMain = {
+
+    init : function () {
+        debugger;
+        var contextPath = contextPath;
+        alert(contextPath);
+    },
+
 }

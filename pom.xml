@@ -10,14 +10,14 @@
     <packaging>war</packaging>
     <properties>
 
-        <springframework.version>5.1.4.RELEASE</springframework.version>
-        <spring-security.version>3.2.5.RELEASE</spring-security.version>
+        <springframework.version>4.1.5.RELEASE</springframework.version>
+        <spring-security.version>4.1.5.RELEASE</spring-security.version>
         <slf4j.version>1.7.5</slf4j.version>
         <freemarker.version>2.3.28</freemarker.version>
         <servlet.version>3.1.0</servlet.version>
         <mybatis-spring.version>2.0.0</mybatis-spring.version>
         <activiti.version>5.22.0</activiti.version>
-        <jackson.databind.version>2.9.8</jackson.databind.version>
+        <jackson.databind.version>2.4.4</jackson.databind.version>
 
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
         <lombok.version>1.18.4</lombok.version>
@@ -59,6 +59,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
         </dependency>
 
         <dependency>
@@ -248,6 +254,25 @@
         </dependency>
         <dependency>
             <groupId>org.activiti</groupId>
+            <artifactId>activiti-explorer</artifactId>
+            <version>${activiti.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>vaadin</artifactId>
+                    <groupId>com.vaadin</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>dcharts-widget</artifactId>
+                    <groupId>org.vaadin.addons</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>activiti-simple-workflow</artifactId>
+                    <groupId>org.activiti</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
             <artifactId>activiti-modeler</artifactId>
             <version>${activiti.version}</version>
         </dependency>
@@ -266,6 +291,15 @@
             <artifactId>activiti-cxf</artifactId>
             <version>${activiti.version}</version>
         </dependency>
+
+
+        <!-- 支持activiti缓存 -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-core</artifactId>
+            <version>5.1.7.Final</version>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.uuid</groupId>
             <artifactId>java-uuid-generator</artifactId>

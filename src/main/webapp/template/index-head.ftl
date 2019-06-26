@@ -1,17 +1,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<#include "commont/taglib.jsp">
-
-	<script>
-		var contextPath = '${contextPath!''}';
-		alert(contextPath)
-
-		
-	</script>
+	<#assign contextPath=request.contextPath />
 
 	<script type="text/javascript" src="${contextPath}/static/js/plug/jquery-1.8.3.min.js"></script>
-
+	<script>
+        var contextPath = '${contextPath!''}';
+    </script>
 	<#--
         <script type="text/javascript" src="${contextPath}/template/public/jqueryExt.js"></script>
         <script type="text/javascript" src="${contextPath}/template/public/helper.js"></script>
