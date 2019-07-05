@@ -35,7 +35,7 @@
             </activation>
             <properties>
                 <jdbc.class>com.mysql.jdbc.Driver</jdbc.class>
-                <jdbc.url>jdbc:mysql://47.104.173.128:3306/activiti-design</jdbc.url>
+                <jdbc.url>jdbc:mysql://localhost:3306/activiti-design</jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>123456</jdbc.password>
             </properties>
