@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.lhj.activiti.design.dean.ActivitiModelDto;
+import com.lhj.activiti.design.utils.JsonUtils;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.Process;
@@ -15,7 +16,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,20 +30,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
-import java.awt.print.Pageable;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
 
 @Controller("activitiController")
-
-public class ActivitiController{
+@RequestMapping(value = "activiti" )
+public class ActivitiController extends BaseController{
     private static Logger LOG = LoggerFactory.getLogger(ActivitiController.class);
+    private static final JsonUtils jsonUtils = JsonUtils.getInstance();
     @Autowired
     private RepositoryService repositoryService;
 
@@ -288,5 +289,47 @@ public class ActivitiController{
             e.printStackTrace();
             System.out.println("复制失败");
         }
+    }
+
+    @RequestMapping(value = "/func/model/pagin")
+    @ResponseBody
+    public String pagin(ActivitiModelDto ibean,HttpServletRequest request,HttpServletResponse response, Model model) {
+
+        if(LOG.isDebugEnabled()){
+            LOG.debug("请求参数  pagin getParameterMap:{}", jsonUtils.objectToJson(request.getParameterMap()));
+        }
+
+        //业务逻辑开始
+        String json = null;
+        Long count = repositoryService.createModelQuery().count();
+        List<org.activiti.engine.repository.Model> listModel = repositoryService.createModelQuery().
+                orderByLastUpdateTime().desc().
+                listPage(ibean.getStart(),ibean.getLimit());
+        List<ActivitiModelDto> list = new ArrayList<ActivitiModelDto>();
+        for (org.activiti.engine.repository.Model models : listModel) {
+            ActivitiModelDto activitiModelDto = new ActivitiModelDto();
+            copyProperties(models,activitiModelDto);
+            list.add(activitiModelDto);
+        }
+
+        int records = 0 ;
+        records = (int) repositoryService.createModelQuery().count();
+        Integer page = ibean.getPage();
+
+        int total = ibean.getTotalPage(records);
+
+        json = this.toDataGridJson(page, total, records, list);
+
+        //业务逻辑结束
+
+        if(LOG.isDebugEnabled()){
+            LOG.debug("输出参数json:{}", json);
+        }
+        return json;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+
     }
 }

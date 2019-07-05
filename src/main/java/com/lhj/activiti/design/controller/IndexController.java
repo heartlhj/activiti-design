@@ -36,4 +36,27 @@ public class IndexController {
 
         return pageView;
     }
+
+    @RequestMapping(value = "/login/login")
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response, Model model,
+                              String userAccount,String userPassword,String remember){
+        logger.info("进入");
+        //业务逻辑开始
+        ModelAndView pageView = new ModelAndView("redirect:/main.do");
+
+        return pageView;
+
+
+    }
+
+    @RequestMapping(value = "/main")
+    public ModelAndView main(HttpServletRequest request, HttpServletResponse response, Model model,
+                              String userAccount,String userPassword,String remember){
+        logger.info("进入");
+        //业务逻辑开始
+        ModelAndView pageView = new ModelAndView("main");
+        return pageView;
+
+
+    }
 }

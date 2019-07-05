@@ -1,0 +1,97 @@
+#login {
+    width: 890px;
+    background: #fff;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: flex;
+}
+#login-left {
+    width: 420px;
+    background: blue;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background: url(../image/login/home.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+#login-right {
+    padding:70px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.btn.btn-lg {
+    background: #0078FF;
+    border-color: #0078FF;
+    color: #fff;
+    height: 40px;
+}
+.login-options {
+    margin-bottom: 36px;
+    margin-top: 23px;
+}
+#logo {
+    height: 38px;
+    display:block;
+    margin: 0 auto;
+}
+#title {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 18px;
+}
+#copyRight {
+    position: absolute;
+    text-align: center;
+    bottom: 10px;
+    width: 100%;
+    color: #fff;
+}
+#copyRight p {
+    margin: 0;
+}
+.login-container {
+    background: url(../image/login/zsbg2.png) center no-repeat;
+    margin-top: 6%;
+}
+.login-container .page-content {
+    background: rgba(0,0,0, 0.5);
+}
+.span-input {
+    color: #c7c7c7;
+}
+.has-feedback .form-control.input-lg {
+    border:none;
+    padding-left: 0;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    border-radius: 0;
+    transition: all ease .3s;
+    height: 40px;
+}
+.has-feedback .form-control.input-lg:focus {
+    border-color: #0078FF;
+    color: #000;
+    border-width: 2px;
+}
+.pos-r {
+    position: relative;
+}
+#forget {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    color: #666666;
+}
+.checker span {
+    color: #0078FF;
+    border: 1px solid #ccc;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    border-radius: 4px;
+}
+.checker span:after {
+    top: 0;
+    left: 0;
+}

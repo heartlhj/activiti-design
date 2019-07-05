@@ -1,7 +1,9 @@
 package com.lhj.activiti.design.dean;
 
+import com.lhj.activiti.design.model.PageBean;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +13,9 @@ import java.util.Date;
  * @Description:
  */
 @Data
-public class ActivitiModelDto{
+public class ActivitiModelDto extends PageBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String id;
 

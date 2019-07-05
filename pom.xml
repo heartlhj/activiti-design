@@ -18,7 +18,7 @@
         <mybatis-spring.version>2.0.0</mybatis-spring.version>
         <activiti.version>5.22.0</activiti.version>
         <jackson.databind.version>2.9.8</jackson.databind.version>
-
+        <ojdbc7.version>12.1.0</ojdbc7.version>
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
         <lombok.version>1.18.4</lombok.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
@@ -29,21 +29,27 @@
     </properties>
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <properties>
-                <jdbc.driverclassname>com.mysql.jdbc.driver</jdbc.driverclassname>
-                <jdbc.url>jdbc:mysql://localhost:3306/activiti-design</jdbc.url>
+                <jdbc.class>com.mysql.jdbc.Driver</jdbc.class>
+                <jdbc.url>jdbc:mysql://47.104.173.128:3306/activiti-design</jdbc.url>
                 <jdbc.username>root</jdbc.username>
-                <jdbc.password>1234</jdbc.password>
+                <jdbc.password>123456</jdbc.password>
             </properties>
         </profile>
         <profile>
             <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
-                <jdbc.driverclassname>com.mysql.jdbc.driver</jdbc.driverclassname>
-                <jdbc.url>jdbc:mysql://192.168.1.200:3306/test</jdbc.url>
-                <jdbc.username>test</jdbc.username>
-                <jdbc.password >test2011</jdbc.password >
+                <jdbc.class>oracle.jdbc.driver.OracleDriver</jdbc.class>
+                <jdbc.url>jdbc:oracle:thin:@localhost:1521:dams</jdbc.url>
+                <jdbc.username>DAMS</jdbc.username>
+                <jdbc.password>DAMS</jdbc.password>
             </properties>
         </profile>
     </profiles>
@@ -192,6 +198,12 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.41</version>
+        </dependency>
         <!-- H2Database -->
         <!--<dependency>-->
             <!--<groupId>com.h2database</groupId>-->
@@ -201,8 +213,8 @@
 
         <!--<dependency>-->
             <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>ojdbc6</artifactId>-->
-            <!--<version>11.2.0</version>-->
+            <!--<artifactId>ojdbc7</artifactId>-->
+            <!--<version>${ojdbc7.version}</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -377,7 +389,7 @@
                     <include>**/*.xml</include>
                     <include>**/*.ini</include>
                 </includes>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/java</directory>
@@ -387,10 +399,10 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
+            <!--<resource>-->
+                <!--<directory>${project.basedir}/src/main/resources</directory>-->
+                <!--<filtering>true</filtering>-->
+            <!--</resource>-->
         </resources>
     </build>
 </project>

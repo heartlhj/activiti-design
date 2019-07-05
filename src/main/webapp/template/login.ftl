@@ -5,42 +5,80 @@
 <head>
 <#include "index-head.ftl">
 </head>
-<script type="text/javascript" src="${contextPath}/static/js/ini/index.js"></script>
+<link rel="stylesheet" href="${contextPath}/static/css/login.css">
+<style>
+
+</style>
 
 <body>
+<!-- Page container -->
+<div class="page-container login-container">
 
-	<div class="login-main">
-		<div class="login-body">
-			<!-- Advanced login -->
-			<form action="/login/login" method="POST" style="height:100%">
-				<div class="login-form">
-					<#if Session.SPRING_SECURITY_LAST_EXCEPTION??>
-					<div class="alert bg-danger">
-						<button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
-						<span class="text-semibold">${Session.SPRING_SECURITY_LAST_EXCEPTION.message}</span>
-					</div>
-					</#if>
+    <!-- Page content -->
+    <div class="page-content">
 
+        <!-- Main content -->
+        <div class="content-wrapper">
 
-					<div class="login-top-title">
-						<p>登陆<span>正圣ERP系统</span></p>
-						<p>LOGIN TO ZHENGSHENG ERP SYSTEM</p>
-					</div>
-					<p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>YOUR LOGIN NAME</p>
-					<input type="text" placeholder="input your login name" id="username" name="userAccount">
-					<p><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>YOUR LOGIN PASSWORD</p>
-					<input type="password" placeholder="input your login password" id="password" name="userPassword">
-					<div class="login-btn">
-						<div class="row">
-							<div class="col-md-6"><p><input type="checkbox" class="mgc mgc-danger mgc-circle" name="remember-me" id="remember">记住密码</p></div>
-							<div class="col-md-6"><p><a href="">忘记密码</a></p></div>
-						</div>
-						<button id="login-btn" type="submit">登陆</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+            <!-- Content area -->
+            <div class="content">
+
+                <!-- Advanced login -->
+                <form action="${contextPath}/login/login.do" method="POST" id="login">
+                    <div id="login-left">
+                        <div id="copyRight">
+                        </div>
+                    </div>
+                    <div id="login-right">
+
+                        <input type="hidden" name="encryptType" id="encryptType">
+                        <div class="login-form">
+                            <div class="text-center" style="margin-bottom: 40px;">
+                                <img id="logo" src="${contextPath}/static/image/login/logo.svg">
+                                <h4 id="title">activiti工作流程演示系统</h4>
+                            </div>
+
+                            <div class="form-group has-feedback has-feedback-left" style="margin-bottom: 27px;">
+                                <span class="span-input">Username</span>
+                                <input autocomplete="off" type="text" class="form-control input-lg" placeholder="请输入用户名" name="userAccount" id="username">
+                            </div>
+
+                            <div class="form-group has-feedback has-feedback-left pos-r">
+                                <span class="span-input">Password</span>
+                                <input autocomplete="off" type="password" class="form-control input-lg" placeholder="请输入密码" name="userPassword" id="password" autocomplete="off" >
+                                <a id="forget" href="#" onClick="alert('请联系超级管理员!')">忘记密码？</a>
+                            </div>
+
+                            <div class="form-group login-options" style="margin-top: 0;">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="checkbox-inline" style="color:#666666">
+                                            <input type="checkbox" class="styled" name="remember" id="remember">
+                                            记住密码
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-block btn-lg">登录 </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+
 
 </body>
 
