@@ -18,7 +18,7 @@
         <mybatis-spring.version>2.0.0</mybatis-spring.version>
         <activiti.version>5.22.0</activiti.version>
         <jackson.databind.version>2.9.8</jackson.databind.version>
-        <ojdbc7.version>12.1.0</ojdbc7.version>
+        <ojdbc6.version>11.2.0.3</ojdbc6.version>
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
         <lombok.version>1.18.4</lombok.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
@@ -47,9 +47,9 @@
             </activation>
             <properties>
                 <jdbc.class>oracle.jdbc.driver.OracleDriver</jdbc.class>
-                <jdbc.url>jdbc:oracle:thin:@localhost:1521:dams</jdbc.url>
-                <jdbc.username>DAMS</jdbc.username>
-                <jdbc.password>DAMS</jdbc.password>
+                <jdbc.url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc.url>
+                <jdbc.username>orcl</jdbc.username>
+                <jdbc.password>orcl</jdbc.password>
             </properties>
         </profile>
     </profiles>
@@ -211,11 +211,11 @@
             <!--<scope>runtime</scope>-->
         <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>ojdbc7</artifactId>-->
-            <!--<version>${ojdbc7.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${ojdbc6.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
