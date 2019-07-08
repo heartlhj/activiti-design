@@ -25,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,38 +46,24 @@ public class ActivitiController extends BaseController{
     @Autowired
     private RepositoryService repositoryService;
 
-    /**
-     * 前端浏览list页地址
-     * @return
-     */
-    @RequestMapping({"/page"})
-    @ResponseBody
-    public void page() {
-        Long count = repositoryService.createModelQuery().count();
-        List<org.activiti.engine.repository.Model> list = repositoryService.createModelQuery().
-                orderByLastUpdateTime().desc().
-                listPage(1,10);
+
+
+    @RequestMapping(value = "/funcPage/model/create")
+    public ModelAndView simpleGoodsInfo(HttpServletRequest request, HttpServletResponse response, Model model) {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("请求参数: intoPage getParameterMap:{}"+jsonUtils.objectToJson(request.getParameterMap()));
+        }
+        doBeforeMenuPageAction(request, response, model, null);
+        ModelAndView pageView = new ModelAndView("model/create");
+        doAfterMenuPageAction(request, response, model, null);
+        return pageView;
     }
-
-
-//    @RequestMapping(
-//            value = {"copyForm/{id}"},
-//            method = {RequestMethod.GET}
-//    )
-//    public String createForm(@PathVariable("id") String id, Model model) {
-//        ActivitiModelDto activitiModelDto = new ActivitiModelDto();
-//        activitiModelDto.setId(id);
-//        this.setCommonData(model);
-//        model.addAttribute("op", "复制模型");
-//        model.addAttribute("d", activitiModelDto);
-//        return "work/activiti/activiti-copyForm";
-//    }
-
     @RequestMapping(
             value = {"createModel"},
             method = {RequestMethod.POST}
     )
-    public void createModel(Model model, ActivitiModelDto d, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
+    public void createModel(@RequestParam("name") String name, @RequestParam("description") String description,
+              HttpServletRequest request, HttpServletResponse response) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectNode editorNode = objectMapper.createObjectNode();
@@ -88,14 +75,13 @@ public class ActivitiController extends BaseController{
             org.activiti.engine.repository.Model modelData = repositoryService.newModel();
 
             ObjectNode modelObjectNode = objectMapper.createObjectNode();
-            modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, d.getName());
+            modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, name);
             modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
-            String description = d.getDescription();
             description = StringUtils.defaultString(description);
             modelObjectNode.put(ModelDataJsonConstants.MODEL_DESCRIPTION, description);
             modelData.setMetaInfo(modelObjectNode.toString());
-            modelData.setName(d.getName());
-            modelData.setKey(StringUtils.defaultString(d.getKey()));
+            modelData.setName(name);
+            modelData.setKey(StringUtils.defaultString(name));
             repositoryService.saveModel(modelData);
             repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
 

@@ -47,9 +47,9 @@
             </activation>
             <properties>
                 <jdbc.class>oracle.jdbc.driver.OracleDriver</jdbc.class>
-                <jdbc.url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc.url>
-                <jdbc.username>orcl</jdbc.username>
-                <jdbc.password>orcl</jdbc.password>
+                <jdbc.url>jdbc:oracle:thin:@localhost:1521:dams</jdbc.url>
+                <jdbc.username>DAMS</jdbc.username>
+                <jdbc.password>DAMS</jdbc.password>
             </properties>
         </profile>
     </profiles>
@@ -405,4 +405,10 @@
             <!--</resource>-->
         </resources>
     </build>
+    <repositories>
+        <repository>
+            <id>aliyun mvn</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>

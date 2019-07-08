@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 'use strict';
-
+var ACTIVITI = ACTIVITI || {};
 ACTIVITI.CONFIG = {
-	'contextRoot' : '/service',
+	'contextRoot' : '/activiti-design/service',
 };

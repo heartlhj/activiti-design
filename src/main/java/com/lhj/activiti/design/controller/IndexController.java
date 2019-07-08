@@ -29,7 +29,7 @@ public class IndexController {
         user.setId(UUID.randomUUID().toString());
         user.setName("45");
         user.setAge(11);
-        userService.insert(user);
+//        userService.insert(user);
         //业务逻辑开始
         ModelAndView pageView = new ModelAndView("login");
 
