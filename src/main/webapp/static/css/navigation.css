@@ -863,6 +863,7 @@ button.close {
 .modal-header[class*=bg-], .modal-dialog, .modal-content {
 	border-top-right-radius: 6px;
 	border-top-left-radius: 6px;
+	/*margin-top: 200px;*/
 }
 .new-panel .control-label {
 	text-align: left;

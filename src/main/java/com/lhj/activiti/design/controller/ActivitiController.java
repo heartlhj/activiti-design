@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.lhj.activiti.design.dean.ActivitiModelDto;
+import com.lhj.activiti.design.utils.InvoteUtil;
 import com.lhj.activiti.design.utils.JsonUtils;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
@@ -22,7 +23,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +34,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
 
@@ -49,7 +50,7 @@ public class ActivitiController extends BaseController{
 
 
     @RequestMapping(value = "/funcPage/model/create")
-    public ModelAndView simpleGoodsInfo(HttpServletRequest request, HttpServletResponse response, Model model) {
+    public ModelAndView create(HttpServletRequest request, HttpServletResponse response, Model model) {
         if (LOG.isDebugEnabled()) {
             LOG.debug("请求参数: intoPage getParameterMap:{}"+jsonUtils.objectToJson(request.getParameterMap()));
         }
@@ -58,6 +59,29 @@ public class ActivitiController extends BaseController{
         doAfterMenuPageAction(request, response, model, null);
         return pageView;
     }
+
+    @RequestMapping(value = "/funcPage/model/import")
+    public ModelAndView imports(HttpServletRequest request,HttpServletResponse response, Model model) {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("请求参数: intoPage getParameterMap:{}"+jsonUtils.objectToJson(request.getParameterMap()));
+        }
+        doBeforeMenuPageAction(request, response, model, null);
+        ModelAndView pageView = new ModelAndView("model/import");
+        doAfterMenuPageAction(request, response, model, null);
+        return pageView;
+    }
+
+    @RequestMapping(value = "/funcPage/model/copy")
+    public ModelAndView copy(HttpServletRequest request,HttpServletResponse response, Model model) {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("请求参数: intoPage getParameterMap:{}"+jsonUtils.objectToJson(request.getParameterMap()));
+        }
+        doBeforeMenuPageAction(request, response, model, null);
+        ModelAndView pageView = new ModelAndView("model/copy");
+        doAfterMenuPageAction(request, response, model, null);
+        return pageView;
+    }
+
     @RequestMapping(
             value = {"createModel"},
             method = {RequestMethod.POST}
@@ -91,15 +115,25 @@ public class ActivitiController extends BaseController{
             e.printStackTrace();
         }
     }
-    @RequestMapping(value = "deleteModel",method = {RequestMethod.POST})
-    public void delete(Model model, @RequestParam("modelIds") String modelIds) {
+    @RequestMapping(value = "deleteModel")
+    @ResponseBody
+    public Object delete(Model model, ActivitiModelDto  activitiModelDto,
+                         HttpServletRequest request,HttpServletResponse response) {
         String message = "删除成功";
-        if(StringUtils.isNotEmpty(modelIds)){
-                repositoryService.deleteModel(modelIds);
+        String[] modelIds = activitiModelDto.getModelIds();
+        String json = null;
+        Map<String,String> map = InvoteUtil.initMap();
+        if(modelIds != null && modelIds.length > 0 ){
+            for (String modelId : modelIds) {
+                repositoryService.deleteModel(modelId);
+                map = InvoteUtil.setSuccessMap(map);
+                json = jsonUtils.objectToJson(map);
+            }
         }
+        return json;
     }
 
-    @RequestMapping(value = "model/import")
+    @RequestMapping(value = "import")
     public void deployementProcessDefinitionByString(MultipartFile file){
         try {
             String message = "导入成功";
@@ -163,11 +197,15 @@ public class ActivitiController extends BaseController{
     /**
      * 根据Model部署流程
      */
-    @RequestMapping(value = "deploy",method = {RequestMethod.POST})
-    public void deploy(@RequestParam("modelId") String modelId, Model models) {
+    @RequestMapping(value = "deploy")
+    @ResponseBody
+    public Object delete(ActivitiModelDto  activitiModelDto, Model models,
+                         HttpServletRequest request,HttpServletResponse response) {
+        Map<String,String> map = InvoteUtil.initMap();
+        String json = null;
         try {
             String message = "部署成功";
-            org.activiti.engine.repository.Model modelData = repositoryService.getModel(modelId);
+            org.activiti.engine.repository.Model modelData = repositoryService.getModel(activitiModelDto.getId());
             ObjectNode modelNode = (ObjectNode) new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
             byte[] bpmnBytes = null;
 
@@ -176,9 +214,15 @@ public class ActivitiController extends BaseController{
 
             String processName = modelData.getName() + ".bpmn20.xml";
             Deployment deployment = repositoryService.createDeployment().name(modelData.getName()).addString(processName, new String(bpmnBytes)).deploy();
+            map = InvoteUtil.setSuccessMap(map);
+            json = jsonUtils.objectToJson(map);
         } catch (Exception e) {
-            LOG.error("根据模型部署流程失败：modelId={}", modelId, e);
+            e.printStackTrace();
+            LOG.error("根据模型部署流程失败：modelId={}", activitiModelDto.getId(), e);
+            map = InvoteUtil.initMap();
+            json = jsonUtils.objectToJson(map);
         }
+        return json;
     }
 
     @RequestMapping(value = "export",method = {RequestMethod.GET})

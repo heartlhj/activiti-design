@@ -47,6 +47,7 @@ public class ActivitiModelDto extends PageBean implements Serializable {
 
     private String descriptionCopy;
 
+    private String[] modelIds;
 
     private String createDateStr;
     private String updateDateStr;

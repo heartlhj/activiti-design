@@ -26,6 +26,7 @@
 			</ul>
 	 </div>
 </div>
+ <#include "index-modal.ftl">
 <hr>
 <div class="tab-content">
     <div class="tab-pane active" id="dman_Table">
@@ -39,7 +40,7 @@
 	<#--<div id="pagination1" class="pagination"></div>-->
     </div>
 </div>
- <#include "index-modal.ftl">
+
 </body>
 <script>
 

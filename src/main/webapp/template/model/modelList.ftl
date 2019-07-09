@@ -2,13 +2,13 @@
 <div class="navbar navbar-default navbar-xs new-navbar">
     <div class="navbar-collapse collapse" id="navbar-filter">
         <ul class="nav nav-tabs nav-tabs-solid" id="purContractInfo-clientBtnId">
-            <li><a href="javascript:WorkFlowMain.create()" id="purContractInfo-create"><i class="icon-plus2 position-left"></i>新增</a></li>
-			<li><a href="javascript:WorkFlowMain.modify()" id="purContractInfo-modify"><i class="icon-pencil4 position-left"></i>修改</a></li>
-			<li><a href="javascript:ruizhi.buyManager.purContractInfo.del()" id="purContractInfo-del"><i class="icon-x position-left"></i>删除</a></li>
-			<li><a href="javascript:ruizhi.buyManager.purContractInfo.contractErrInfo()" id="purContractInfo-contractErrInfo"><i class="icon-warning position-left"></i>合同异常</a></li>
-			<li><a href="javascript:ruizhi.buyManager.purContractInfo.contractClose()" id="purContractInfo-contractClose"><i class="icon-close2 position-left"></i>合同关闭</a></li>
-			<li><a href="javascript:ruizhi.buyManager.purContractInfo.contractReturn()" id="purContractInfo-contractReturn"><i class="icon-close2 position-left"></i>合同回传</a></li>
-			<li><a href="javascript:ruizhi.buyManager.purContractInfo.purContractInfoExcel()"><i class="icon-folder-download2 position-left"></i>导出EXCLE</a></li>
+            <li><a href="javascript:activiti.model.design.create()"><i class="icon-plus2 position-left"></i>新增</a></li>
+			<li><a href="javascript:activiti.model.design.modify()"><i class="icon-pencil4 position-left"></i>编辑</a></li>
+			<li><a href="javascript:activiti.model.design.del()" ><i class="icon-x position-left"></i>删除</a></li>
+			<li><a href="javascript:activiti.model.design.deploy()" ><i class="icon-warning position-left"></i>部署</a></li>
+			<li><a href="javascript:activiti.model.design.import()" id="purContractInfo-contractClose"><i class="icon-folder-upload2 position-left"></i>导入</a></li>
+			<li><a href="javascript:activiti.model.design.export()" id="purContractInfo-contractReturn"><i class="icon-folder-download2 position-left"></i>导出</a></li>
+			<li><a href="javascript:activiti.model.design.copy()"><i class="icon-section position-left"></i>复制模型</a></li>
 
         </ul>
     </div>

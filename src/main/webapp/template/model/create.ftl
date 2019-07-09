@@ -5,10 +5,9 @@
 <head>
     <!--页面title-->
     <div class="modal-header bg-primary">
-        <button type="button" class="close" data-dismiss="modal" onclick="CreateModel.doClose()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" onclick="activiti.model.create.doClose()">&times;</button>
         <h6 class="modal-title">模型新增</h6>
     </div>
-<#include "../index-head.ftl">
 <script type="text/javascript" src="${contextPath}/static/js/ini/createModel.js"></script>
 
 </head>
@@ -47,7 +46,7 @@
             </div>
             <div class="modal-footer" id="activiti-model-create-btn">
                 <button type="submit" class="btn btn-save" >保存</button>
-                <button type="button" class="btn btn-cancel" onclick="CreateModel.doClose()">关闭</button>
+                <button type="button" class="btn btn-cancel" onclick="activiti.model.create.doClose()">关闭</button>
             </div>
         </form>
 

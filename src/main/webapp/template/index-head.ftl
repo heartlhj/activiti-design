@@ -39,6 +39,8 @@
 	<script type="text/javascript" src="${contextPath}/static/js/plug/jqueryExt.js"></script>
 	<#--<script type="text/javascript" src="${contextPath}/static/js/plug/pagination.min.js"></script>-->
 	<script type="text/javascript" src="${contextPath}/static/js/plug/utils.js"></script>
+   	<script type="text/javascript" src="${contextPath}/static/js/plug/core.min.js"></script>
+   	<script type="text/javascript" src="${contextPath}/static/js/plug/ajaxHtml.js"></script>
 
 
 
