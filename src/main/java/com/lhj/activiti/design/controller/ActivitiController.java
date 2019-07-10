@@ -133,8 +133,11 @@ public class ActivitiController extends BaseController{
         return json;
     }
 
-    @RequestMapping(value = "import")
-    public void deployementProcessDefinitionByString(MultipartFile file){
+    @RequestMapping(value = "/import")
+    @ResponseBody
+    public Object importProcessDefinitionByString(MultipartFile file){
+        Map<String,String> map = InvoteUtil.initMap();
+        String json = null;
         try {
             String message = "导入成功";
 //            Model modelData = repositoryService.getModel(modelId);
@@ -188,10 +191,15 @@ public class ActivitiController extends BaseController{
 //                    .deploy();//完成部署  
 //            System.out.println("部署ID：" + deployment.getId());//1  
 //            System.out.println("部署时间：" + deployment.getDeploymentTime());
+            map = InvoteUtil.setSuccessMap(map);
+            json = jsonUtils.objectToJson(map);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("导入失败");
+            map = InvoteUtil.initMap();
+            json = jsonUtils.objectToJson(map);
         }
+        return json;
     }
 
     /**
@@ -282,7 +290,7 @@ public class ActivitiController extends BaseController{
             }
             in.close();
             out.close();
-
+            LOG.info("导出model的xml文件成功：modelId={}, type={}", modelId);
 
         } catch (Exception e) {
             LOG.error("导出model的xml文件失败：modelId={}, type={}", modelId, e);
@@ -290,8 +298,11 @@ public class ActivitiController extends BaseController{
     }
 
 
-    @RequestMapping(value = "model/copy",method = {RequestMethod.POST})
-    public void copy(ActivitiModelDto d, Model models){
+    @RequestMapping(value = "model/copy")
+    @ResponseBody
+    public Object copy(ActivitiModelDto d, Model models){
+        Map<String,String> map = InvoteUtil.initMap();
+        String json = null;
         try {
             String message = "复制成功";
             org.activiti.engine.repository.Model modelData = repositoryService.getModel(d.getId());
@@ -301,8 +312,8 @@ public class ActivitiController extends BaseController{
 
             ObjectNode jsonNodes = new BpmnJsonConverter().convertToJson(model);
             ObjectMapper objectMapper = new ObjectMapper();
-            String description = d.getDescriptionCopy();
-            String name = d.getNameCopy();
+            String description = d.getDescription();
+            String name = d.getName();
             ObjectNode modelObjectNode = objectMapper.createObjectNode();
             modelObjectNode.put(ModelDataJsonConstants.MODEL_NAME, name);
             modelObjectNode.put(ModelDataJsonConstants.MODEL_REVISION, 1);
@@ -314,11 +325,15 @@ public class ActivitiController extends BaseController{
             modelDataNow.setKey(StringUtils.defaultString(name));
             repositoryService.saveModel(modelDataNow);
             repositoryService.addModelEditorSource(modelDataNow.getId(), jsonNodes.toString().getBytes("utf-8"));
-
+            map = InvoteUtil.setSuccessMap(map);
+            json = jsonUtils.objectToJson(map);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("复制失败");
+            map = InvoteUtil.initMap();
+            json = jsonUtils.objectToJson(map);
         }
+        return json;
     }
 
     @RequestMapping(value = "/func/model/pagin")

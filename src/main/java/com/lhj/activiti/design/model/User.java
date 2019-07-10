@@ -1,11 +1,19 @@
 package com.lhj.activiti.design.model;
 
+import java.math.BigDecimal;
+
 public class User {
     private String id;
 
     private String name;
 
-    private Integer age;
+    private BigDecimal age;
+
+    private String pwd;
+
+    private String account;
+
+    private String ramk;
 
     public String getId() {
         return id;
@@ -23,11 +31,35 @@ public class User {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public BigDecimal getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(BigDecimal age) {
         this.age = age;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getRamk() {
+        return ramk;
+    }
+
+    public void setRamk(String ramk) {
+        this.ramk = ramk;
     }
 }

@@ -15,7 +15,7 @@
 }
 
 html {
-    height: 100%
+    /*height: 100%*/
 }
 
 body {
@@ -3417,9 +3417,9 @@ textarea.input-group-xs>.form-control,textarea.input-group-xs>.input-group-addon
         color: #fff
     }
 
-    .navbar-inverse .navbar-nav .open .dropdown-menu a:not(.label-flat):not(.badge-flat):not(.disabled > a) {
-        color: #fff
-    }
+    /*.navbar-inverse .navbar-nav .open .dropdown-menu a:not(.label-flat):not(.badge-flat):not(.disabled > a) {*/
+        /*color: #fff*/
+    /*}*/
 
     .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
         background-color: rgba(255,255,255,0.1)

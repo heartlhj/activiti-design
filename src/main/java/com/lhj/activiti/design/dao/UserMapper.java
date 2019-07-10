@@ -3,7 +3,6 @@ package com.lhj.activiti.design.dao;
 import com.lhj.activiti.design.model.User;
 
 public interface UserMapper {
-
     int deleteByPrimaryKey(String id);
 
     int insert(User record);

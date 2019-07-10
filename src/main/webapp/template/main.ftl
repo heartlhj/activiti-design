@@ -4,7 +4,8 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 <#include "index-head.ftl">
-
+    <title>activiti主页</title>
+    <link rel="shortcut icon" href="${contextPath}/static/image/favicon.ico">
 <style type="text/css">
         
 </style>
@@ -20,9 +21,9 @@
 	<hr>
 	<div class="row">
 		<ul class="nav nav-pills" role="tablist">
-			  <li class="active"><a href="#dman_Table"  onclick="winOnload()" data-toggle="tab">教学视频</a></li>
-			  <li><a href="#movie_Table" data-toggle="tab">电影</a></li>
-			  <li><a href="#book_Table" onclick="winBookloadClick()" data-toggle="tab">书籍</a></li>
+			  <li class="active"><a href="#dman_Table"  onclick="winOnload()" data-toggle="tab">模型管理</a></li>
+			  <li><a href="#movie_Table" data-toggle="tab">部署管理</a></li>
+			  <li><a href="#book_Table" onclick="winBookloadClick()" data-toggle="tab">待办管理</a></li>
 			</ul>
 	 </div>
 </div>

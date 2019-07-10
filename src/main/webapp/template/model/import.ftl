@@ -16,7 +16,7 @@
 
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="basicMessage">
-        <form class="form-horizontal" id="activiti-model-import--form" action="${contextPath}/activiti/createModel.do" method="post">
+        <form class="form-horizontal" id="activiti-model-import--form"  enctype="multipart/form-data" action="#" method="post">
             <div>
                 <br/>
             </div>

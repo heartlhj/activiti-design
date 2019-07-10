@@ -85,9 +85,9 @@ activiti.model.design = function() {
         deploy : function () {
             var rowIds = grid1.getCheckedIds();
             if (rowIds.length <= 0) {
-                alert("请选择记录");
+                activiti.Alert("请选择记录");
             }else if(rowIds.length >1) {
-                alert("只能选择一条记录");
+                activiti.Alert("只能选择一条记录");
             }else {
                 var id = rowIds[0];
                 var msg = "确定要部署吗？";
@@ -120,26 +120,41 @@ activiti.model.design = function() {
         },
 
         export : function () {
-            var paramObj = {};//传给模态窗口的参数
-            var url = CONTEXT_PATH + '/activiti/model/import.do';
-            var width = null;
-            var heigth = null;
-            var submitFn = activiti.model.design.createCloseComeBack;//回调方法
-            var modalClass = "modal-lg";
-            activiti.ShowModalWin(url,width,heigth,paramObj,submitFn,modalClass);
+            var rowIds = grid1.getCheckedIds();
+            if (rowIds.length <= 0) {
+                activiti.Alert("请选择记录");
+            }else if(rowIds.length >1) {
+                activiti.Alert("只能选择一条记录");
+            }else {
+                var id = rowIds[0];
+                window.open(CONTEXT_PATH + "/activiti/export.do?modelId="+id);
+                // var paramObj = {};//传给模态窗口的参数
+                // paramObj.id = id;
+                // var url = CONTEXT_PATH + '/activiti/export.do';
+                // activiti.InvokeMethodAsyn(url,paramObj,function(msg){
+                //     if("success" == msg.status){
+                //         activiti.Alert("操作成功");
+                //         activiti.model.design.loadData();
+                //     }else{
+                //         activiti.Alert(msg.message);
+                //     };
+                // })
+            }
         },
 
         copy : function () {
             var rowIds = grid1.getCheckedIds();
             if (rowIds.length <= 0) {
-                alert("请选择记录");
+                activiti.Alert("请选择记录");
             }else if(rowIds.length >1) {
-                alert("只能选择一条记录");
+                activiti.Alert("只能选择一条记录");
             }else {
+                var selItem = grid1.getSelectedItem();//所选行
                 var paramObj = {};//传给模态窗口的参数
-                var url = CONTEXT_PATH + '/activiti/model/import.do';
+                var url = CONTEXT_PATH + '/activiti/funcPage/model/copy.do';
                 var width = null;
                 var heigth = null;
+                paramObj.selItem = selItem;
                 var submitFn = activiti.model.design.createCloseComeBack;//回调方法
                 var modalClass = "modal-lg";
                 activiti.ShowModalWin(url, width, heigth, paramObj, submitFn, modalClass);
