@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  *
- * @Description: 合同常量类
+ * @Description: 常量类
  * 
  */
 public class Constants {

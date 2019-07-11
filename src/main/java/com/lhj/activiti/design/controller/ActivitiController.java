@@ -47,12 +47,13 @@ public class ActivitiController extends BaseController{
     @Autowired
     private RepositoryService repositoryService;
 
-    /**
-     * 模型新增
-     * @param request
-     * @param response
-     * @param model
-     * @return
+    /*
+     *
+     * @Description: 模型新增页面
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:04
      */
     @RequestMapping(value = "/funcPage/model/create")
     public ModelAndView create(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -64,7 +65,14 @@ public class ActivitiController extends BaseController{
         doAfterMenuPageAction(request, response, model, null);
         return pageView;
     }
-
+    /*
+     *
+     * @Description: 模型导入页面
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:04
+     */
     @RequestMapping(value = "/funcPage/model/import")
     public ModelAndView imports(HttpServletRequest request,HttpServletResponse response, Model model) {
         if (LOG.isDebugEnabled()) {
@@ -75,7 +83,14 @@ public class ActivitiController extends BaseController{
         doAfterMenuPageAction(request, response, model, null);
         return pageView;
     }
-
+    /*
+     *
+     * @Description: 模型复制页面
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:05
+     */
     @RequestMapping(value = "/funcPage/model/copy")
     public ModelAndView copy(HttpServletRequest request,HttpServletResponse response, Model model) {
         if (LOG.isDebugEnabled()) {
@@ -87,6 +102,14 @@ public class ActivitiController extends BaseController{
         return pageView;
     }
 
+    /*
+     *
+     * @Description: 模型新增
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:05
+     */
     @RequestMapping(
             value = {"createModel"},
             method = {RequestMethod.POST}
@@ -120,6 +143,14 @@ public class ActivitiController extends BaseController{
             e.printStackTrace();
         }
     }
+    /*
+     *
+     * @Description: 模型删除
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:05
+     */
     @RequestMapping(value = "deleteModel")
     @ResponseBody
     public Object delete(Model model, ActivitiModelDto  activitiModelDto,
@@ -137,7 +168,14 @@ public class ActivitiController extends BaseController{
         }
         return json;
     }
-
+    /*
+     *
+     * @Description: 模型导入
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:05
+     */
     @RequestMapping(value = "/import")
     @ResponseBody
     public Object importProcessDefinitionByString(MultipartFile file){
@@ -207,8 +245,13 @@ public class ActivitiController extends BaseController{
         return json;
     }
 
-    /**
-     * 根据Model部署流程
+    /*
+     *
+     * @Description: 模型部署
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:06
      */
     @RequestMapping(value = "deploy")
     @ResponseBody
@@ -237,7 +280,14 @@ public class ActivitiController extends BaseController{
         }
         return json;
     }
-
+    /*
+     *
+     * @Description: 模型导出
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:06
+     */
     @RequestMapping(value = "export",method = {RequestMethod.GET})
     public void export(@RequestParam(required = false) String modelId,
                        HttpServletRequest request,HttpServletResponse response) {
@@ -302,7 +352,14 @@ public class ActivitiController extends BaseController{
         }
     }
 
-
+    /*
+     *
+     * @Description: 模型复制
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:06
+     */
     @RequestMapping(value = "model/copy")
     @ResponseBody
     public Object copy(ActivitiModelDto d, Model models){
@@ -340,7 +397,14 @@ public class ActivitiController extends BaseController{
         }
         return json;
     }
-
+    /*
+     *
+     * @Description: 查询模型列表
+     * @ param 
+     * @return 
+     * @author lhj
+     * @date 2019/7/11 9:18
+     */
     @RequestMapping(value = "/func/model/pagin")
     @ResponseBody
     public String pagin(ActivitiModelDto ibean,HttpServletRequest request,HttpServletResponse response, Model model) {

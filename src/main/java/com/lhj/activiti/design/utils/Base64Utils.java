@@ -30,38 +30,21 @@ public class Base64Utils {
    
     /** 
      * 功能：编码字符串 
-     * 
-     * @author jiangshuai 
-     * @date 2016年10月03日 
-     * @param data 
-     *            源字符串 
-     * @return String 
+     *
      */  
     public static String encode(String data) {  
         return new String(encode(data.getBytes()));  
     }  
    
     /** 
-     * 功能：解码字符串 
-     * 
-     * @author jiangshuai 
-     * @date 2016年10月03日 
-     * @param data 
-     *            源字符串 
-     * @return String 
+     * 功能：解码字符串
      */  
     public static String decode(String data) {  
         return new String(decode(data.toCharArray()));  
     }  
    
     /** 
-     * 功能：编码byte[] 
-     * 
-     * @author jiangshuai 
-     * @date 2016年10月03日 
-     * @param data 
-     *            源 
-     * @return char[] 
+     * 功能：编码byte[]
      */  
     public static char[] encode(byte[] data) {  
         char[] out = new char[((data.length + 2) / 3) * 4];  
@@ -92,13 +75,7 @@ public class Base64Utils {
     }  
    
     /** 
-     * 功能：解码 
-     * 
-     * @author jiangshuai 
-     * @date 2016年10月03日 
-     * @param data 
-     *            编码后的字符数组 
-     * @return byte[] 
+     * 功能：解码
      */  
     public static byte[] decode(char[] data) {  
    
@@ -153,12 +130,7 @@ public class Base64Utils {
     }  
    
     /** 
-     * 功能：编码文件 
-     * 
-     * @author jiangshuai 
-     * @date 2016年10月03日 
-     * @param file 
-     *            源文件 
+     * 功能：编码文件
      */  
     public static void encode(File file) throws IOException {  
         if (!file.exists()) {  
@@ -174,13 +146,7 @@ public class Base64Utils {
     }  
    
     /** 
-     * 功能：解码文件。 
-     * 
-     * @author jiangshuai 
-     * @date 2016年10月03日 
-     * @param file 
-     *            源文件 
-     * @throws IOException 
+     * 功能：解码文件。
      */  
     public static void decode(File file) throws IOException {  
         if (!file.exists()) {  

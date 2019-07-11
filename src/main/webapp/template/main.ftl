@@ -21,24 +21,23 @@
 	<hr>
 	<div class="row">
 		<ul class="nav nav-pills" role="tablist">
-			  <li class="active"><a href="#dman_Table"  onclick="winOnload()" data-toggle="tab">模型管理</a></li>
-			  <li><a href="#movie_Table" data-toggle="tab">部署管理</a></li>
-			  <li><a href="#book_Table" onclick="winBookloadClick()" data-toggle="tab">待办管理</a></li>
+			  <li class="active"><a href="#model_Table"  data-toggle="tab">模型管理</a></li>
+			  <li><a href="#deployment_Table" data-toggle="tab">部署管理</a></li>
+			  <li><a href="#task_Table"  data-toggle="tab">待办管理</a></li>
 			</ul>
 	 </div>
 </div>
  <#include "index-modal.ftl">
 <hr>
 <div class="tab-content">
-    <div class="tab-pane active" id="dman_Table">
+    <div class="tab-pane active" id="model_Table">
 				<#include "model/modelList.ftl">
-        <div id="pagination" class="pagination"></div>
     </div>
+    <div class="tab-pane" id="deployment_Table">
 
-    <div class="tab-pane" id="book_Table">
-        <table class="table table-striped" id= "book_tables">
-        </table>
-	<#--<div id="pagination1" class="pagination"></div>-->
+    </div>
+    <div class="tab-pane" id="task_Table">
+
     </div>
 </div>
 

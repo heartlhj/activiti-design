@@ -23,12 +23,13 @@ import com.lhj.activiti.design.dean.DaoSate;
 import org.apache.commons.lang3.StringUtils;
 
 
-/**
+/*
  *
- * @date 2017年9月28日 下午4:39:43
- * @author LGK
- * @Description: TODO(这里用一句话描述这个类的作用)
- * 
+ * @Description: 
+ * @ param 
+ * @return 
+ * @author lhj
+ * @date 2019/7/11 9:17
  */
 public class InvoteUtil {
 	
