@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="modal-footer" id="activiti-model-create-btn">
-                <button type="submit" class="btn btn-save" >保存</button>
+                <button type="submit" class="btn btn-save" >创建</button>
                 <button type="button" class="btn btn-cancel" onclick="activiti.model.create.doClose()">关闭</button>
             </div>
         </form>

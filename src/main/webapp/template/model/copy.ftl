@@ -6,7 +6,7 @@
     <!--页面title-->
     <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal" onclick="activiti.model.create.doClose()">&times;</button>
-        <h6 class="modal-title">模型新增</h6>
+        <h6 class="modal-title">模型复制</h6>
     </div>
 <script type="text/javascript" src="${contextPath}/static/js/ini/copyModel.js"></script>
 

@@ -47,8 +47,13 @@ public class ActivitiController extends BaseController{
     @Autowired
     private RepositoryService repositoryService;
 
-
-
+    /**
+     * 模型新增
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/funcPage/model/create")
     public ModelAndView create(HttpServletRequest request, HttpServletResponse response, Model model) {
         if (LOG.isDebugEnabled()) {

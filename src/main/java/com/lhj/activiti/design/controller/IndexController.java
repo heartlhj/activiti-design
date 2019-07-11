@@ -48,10 +48,8 @@ public class IndexController {
             // read user from database
             org.activiti.engine.identity.User user = identityService.createUserQuery().userId(userName).singleResult();
             request.getSession().setAttribute(Global.USER_SESSION_KEY, user);
-            //业务逻辑开始
             pageView = new ModelAndView("redirect:/main.do");
         }else{
-            //业务逻辑开始
             pageView = new ModelAndView("redirect:/index.do");
         }
         return pageView;
@@ -67,7 +65,6 @@ public class IndexController {
     @RequestMapping(value = "/main")
     public ModelAndView main(HttpServletRequest request, HttpServletResponse response, Model model,
                               String userAccount,String userPassword,String remember){
-        //业务逻辑开始
         ModelAndView pageView = new ModelAndView("main");
         return pageView;
 

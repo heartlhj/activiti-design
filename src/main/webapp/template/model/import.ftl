@@ -39,8 +39,6 @@
                 <button type="button" class="btn btn-cancel" onclick="activiti.model.import.doClose()">取消</button>
             </div>
         </form>
-
-
     </div>
 </div>
 </body>

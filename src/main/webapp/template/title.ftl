@@ -75,7 +75,7 @@
           <td width="100%" align="center">
           <A href="${contextPath}/index.do" target="_top"><font color="#0033cc"><b>返回首页</b></font></a>
           <font color="#0033cc"><b>|</b></font>
-          <A href="${contextPath}/index.do"   target="_top"> <font color="#0033cc"><b>重新登录</b></font></A>
+          <A href="${contextPath}/logout.do"   target="_top"> <font color="#0033cc"><b>重新登录</b></font></A>
           </td>
         </tr>
       </table>
