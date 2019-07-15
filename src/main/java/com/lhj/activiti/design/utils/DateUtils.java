@@ -1,12 +1,4 @@
-/**
- *
- * 广州睿智信息科技有限公司, 版权所有 违者必究
- * copyright 2015-2020
- * @date 2015年12月1日 下午4:59:30
- * @author yuxiao
- * @Description: Date 工具集
- * 
- */
+
 package com.lhj.activiti.design.utils;
 
 import java.sql.Timestamp;

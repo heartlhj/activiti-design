@@ -1,12 +1,4 @@
-/**
- *
- * 广州睿智信息科技有限公司, 版权所有 违者必究
- * copyright 2015-2020
- * @date 2017年9月28日 下午4:39:43
- * @author LGK
- * @Description: TODO(这里用一句话描述这个类的作用)
- * 
- */
+
 package com.lhj.activiti.design.utils;
 
 import java.beans.PropertyDescriptor;
