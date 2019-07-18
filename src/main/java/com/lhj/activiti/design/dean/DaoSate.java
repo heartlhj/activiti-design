@@ -1,12 +1,4 @@
-/**
- *
- * 广州睿智信息科技有限公司, 版权所有 违者必究
- * copyright 2015-2020
- * @date 2017年9月18日 下午2:32:46
- * @author LGK
- * @Description: 返回状态
- * 
- */
+
 package com.lhj.activiti.design.dean;
 
 /**

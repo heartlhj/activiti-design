@@ -5,8 +5,6 @@ import java.io.Serializable;
 /**
  * 
  *
- * @date 2017年10月18日 下午3:37:08
- * @author jie
  * @Description: 处理结果
  *
  */

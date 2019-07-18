@@ -1,20 +1,10 @@
-/**
- *
- * 广州睿智信息科技有限公司, 版权所有 违者必究
- * copyright 2015-2020
- * @date 2016年1月12日 下午7:13:15
- * @author yuxiao
- * @Description: 分页查询时使用
- * 
- */
+
 package com.lhj.activiti.design.model;
 
 import java.io.Serializable;
 
 /**
  *
- * @date 2016年1月12日 下午7:13:15
- * @author yuxiao
  * @Description: 分页查询时使用
  * 
  */
