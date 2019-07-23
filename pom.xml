@@ -25,6 +25,7 @@
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
         <commons-io.version>2.4</commons-io.version>
         <ureport2.version>2.2.9</ureport2.version>
+        <commons-io.version>2.4</commons-io.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -74,13 +75,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -470,8 +464,15 @@
     </build>
     <repositories>
         <repository>
-            <id>aliyun mvn</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 </project>
