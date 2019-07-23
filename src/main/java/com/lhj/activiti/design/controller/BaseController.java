@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.lhj.activiti.design.controller;
 
 import java.text.SimpleDateFormat;
@@ -23,8 +21,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 /**
- * 
- * @author yuxiao 所有控制器的基类
+ * 所有控制器的基类
  */
 public abstract class BaseController implements ApplicationContextAware{
 
@@ -45,9 +42,7 @@ public abstract class BaseController implements ApplicationContextAware{
 	public static final String FAILURE = "failure";
 	
 	/**
-	 * 
-	 * @date 2015年12月23日 下午12:48:31
-	 * @author 杰
+	 *
 	 * @Description: (指定时间类型编辑器)
 	 * @param binder
 	 *

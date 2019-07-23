@@ -39,6 +39,14 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截所有URL中包含/user/的请求 -->
+			<mvc:mapping path="/*"/>
+			<mvc:exclude-mapping path="/index.do" />
+			<bean class="com.lhj.activiti.design.filter.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- 属性文件读入 -->
 	<bean id="datasourceProperties"

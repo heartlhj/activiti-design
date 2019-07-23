@@ -1,11 +1,11 @@
-<nav class="navbar navbar-default" role="navigation">
+<#--<nav class="navbar navbar-default" role="navigation">
 		    <div class="container-fluid">
 			    <div class="navbar-header">
 			        <a class="navbar-brand" href="#">activiti工作流</a>
 			    </div>
 			      <div>
 		       	 <form class="navbar-form navbar-right" role="search">
-			           
+
 			            <div class="form-group">
 			                <input type="text" class="form-control" placeholder="Search">
 			            </div>
@@ -15,7 +15,7 @@
 			        </form>
 		    </div>
 	    </div>
-	</nav>
+	</nav>-->
 <FORM id=Form1 name=Form1  method=post>
 <table border="0" width="100%" height="9" cellspacing="0" cellpadding="0">
   <tr>
@@ -73,9 +73,9 @@
       <table border="0" width="100%" cellspacing="0" cellpadding="0">
         <tr>
           <td width="100%" align="center">
-          <A href="/index/main" target="_top"><font color="#0033cc"><b>返回首页</b></font></a>
+          <A href="${contextPath}/main.do" target="_top"><font color="#0033cc"><b>返回首页</b></font></a>
           <font color="#0033cc"><b>|</b></font>
-          <A href="/logout"   target="_top"> <font color="#0033cc"><b>重新登录</b></font></A>
+          <A href="${contextPath}/logout.do"   target="_top"> <font color="#0033cc"><b>重新登录</b></font></A>
           </td>
         </tr>
       </table>

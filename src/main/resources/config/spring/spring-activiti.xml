@@ -5,10 +5,7 @@
 	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 	http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-	<context:component-scan
-			base-package="org.activiti.rest.editor,org.activiti.rest.service">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	</context:component-scan>
+
 	<!-- 单例json对象 -->
 	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
 
@@ -19,23 +16,10 @@
 		<property name="jobExecutorActivate" value="false" />
 		<property name="history" value="full" />
 		<property name="processDefinitionCacheLimit" value="10" />
-		<property name="activityFontName" value="宋体"/> 
+		<property name="activityFontName" value="宋体"/>
 		<property name="labelFontName" value="宋体"/>
 		<property name="annotationFontName" value="宋体"/>
-		<!--<property name="eventListeners">-->
-			<!--<list>-->
-			<!--</list>-->
-		<!--</property>-->
-<!-- 
-		 <property name="mailServerHost" value="mail.my-corp.com" />
-		 <property name="mailServerPort" value="5025" /> 
--->
 	</bean>
-<!--	
-	<bean id="workflowDeployer" class="cn.com.jade.logistics.WorkflowDeployer">
-		<property name="deploymentResources" value="classpath*:META-INF/bpmn/*.bpmn"></property>
-	</bean>
--->
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
 	</bean>

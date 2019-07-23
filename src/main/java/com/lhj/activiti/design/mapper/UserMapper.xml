@@ -4,29 +4,32 @@
   <resultMap id="BaseResultMap" type="com.lhj.activiti.design.model.User" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="AGE" property="age" jdbcType="INTEGER" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="PWD" property="pwd" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="RAMK" property="ramk" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, NAME, AGE
+    ID, NAME, AGE, PWD, ACCOUNT, RAMK
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from USER
+    from AC_USER
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from USER
+    delete from AC_USER
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.lhj.activiti.design.model.User" >
-    insert into USER (ID, NAME, AGE
-      )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}
-      )
+    insert into AC_USER (ID, NAME, AGE, 
+      PWD, ACCOUNT, RAMK)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, 
+      #{pwd,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{ramk,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lhj.activiti.design.model.User" >
-    insert into USER
+    insert into AC_USER
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -37,6 +40,15 @@
       <if test="age != null" >
         AGE,
       </if>
+      <if test="pwd != null" >
+        PWD,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="ramk != null" >
+        RAMK,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -46,26 +58,47 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="age != null" >
-        #{age,jdbcType=INTEGER},
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="ramk != null" >
+        #{ramk,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.lhj.activiti.design.model.User" >
-    update USER
+    update AC_USER
     <set >
       <if test="name != null" >
         NAME = #{name,jdbcType=VARCHAR},
       </if>
       <if test="age != null" >
-        AGE = #{age,jdbcType=INTEGER},
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="pwd != null" >
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="ramk != null" >
+        RAMK = #{ramk,jdbcType=VARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lhj.activiti.design.model.User" >
-    update USER
+    update AC_USER
     set NAME = #{name,jdbcType=VARCHAR},
-      AGE = #{age,jdbcType=INTEGER}
+      AGE = #{age,jdbcType=DECIMAL},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      RAMK = #{ramk,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

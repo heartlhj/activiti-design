@@ -20,8 +20,10 @@
         <jackson.databind.version>2.9.8</jackson.databind.version>
         <ojdbc6.version>11.2.0.3</ojdbc6.version>
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
+        <h2.version>1.4.180</h2.version>
         <lombok.version>1.18.4</lombok.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
+        <commons-io.version>2.4</commons-io.version>
         <ureport2.version>2.2.9</ureport2.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -29,7 +31,7 @@
     </properties>
     <profiles>
         <profile>
-            <id>prod</id>
+            <id>mysql</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -41,15 +43,27 @@
             </properties>
         </profile>
         <profile>
-            <id>test</id>
+            <id>h2</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <jdbc.class>org.h2.Driver</jdbc.class>
+                <jdbc.url>jdbc:h2:file:~/ac;AUTO_SERVER=TRUE</jdbc.url>
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password></jdbc.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>oracle</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <jdbc.class>oracle.jdbc.driver.OracleDriver</jdbc.class>
-                <jdbc.url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc.url>
-                <jdbc.username>orcl</jdbc.username>
-                <jdbc.password>orcl</jdbc.password>
+                <jdbc.url>jdbc:oracle:thin:@localhost:1521:dams</jdbc.url>
+                <jdbc.username>DAMS</jdbc.username>
+                <jdbc.password>DAMS</jdbc.password>
             </properties>
         </profile>
     </profiles>
@@ -60,6 +74,13 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -208,13 +229,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.41</version>
         </dependency>
-        <!-- H2Database -->
-        <!--<dependency>-->
-            <!--<groupId>com.h2database</groupId>-->
-            <!--<artifactId>h2</artifactId>-->
-            <!--<scope>runtime</scope>-->
-        <!--</dependency>-->
-
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
@@ -307,7 +326,47 @@
             <artifactId>activiti-cxf</artifactId>
             <version>${activiti.version}</version>
         </dependency>
+        <!-- cxf的http支持 -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-api</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>2.7.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.2.11</version>
+        </dependency>
 
+        <!-- 支持activiti缓存 -->
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-core</artifactId>
+            <version>5.1.7.Final</version>
+        </dependency>
+
+        <!-- UTILS -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
 
         <!-- 支持activiti缓存 -->
         <dependency>
@@ -409,4 +468,10 @@
             <!--</resource>-->
         </resources>
     </build>
+    <repositories>
+        <repository>
+            <id>aliyun mvn</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>

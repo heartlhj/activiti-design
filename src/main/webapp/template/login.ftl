@@ -4,6 +4,8 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 <#include "index-head.ftl">
+    <title>activiti登录页</title>
+    <link rel="shortcut icon" href="${contextPath}/static/image/favicon.ico">
 </head>
 <link rel="stylesheet" href="${contextPath}/static/css/login.css">
 <style>
@@ -40,12 +42,12 @@
 
                             <div class="form-group has-feedback has-feedback-left" style="margin-bottom: 27px;">
                                 <span class="span-input">Username</span>
-                                <input autocomplete="off" type="text" class="form-control input-lg" placeholder="请输入用户名" name="userAccount" id="username">
+                                <input autocomplete="off" type="text" class="form-control input-lg" placeholder="请输入用户名" name="username" id="username">
                             </div>
 
                             <div class="form-group has-feedback has-feedback-left pos-r">
                                 <span class="span-input">Password</span>
-                                <input autocomplete="off" type="password" class="form-control input-lg" placeholder="请输入密码" name="userPassword" id="password" autocomplete="off" >
+                                <input autocomplete="off" type="password" class="form-control input-lg" placeholder="请输入密码" name="password" id="password" autocomplete="off" >
                                 <a id="forget" href="#" onClick="alert('请联系超级管理员!')">忘记密码？</a>
                             </div>
 

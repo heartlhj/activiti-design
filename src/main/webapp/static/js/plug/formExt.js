@@ -11,10 +11,10 @@ activiti.FormExt = function(formId,initParam) {
 		/* 初始化选择框，包括单选与多选 */
 		var select = formJq.find('.select');
 		if(select!=null){
-			select.select2({
-				// 去掉这个属性可加上过滤器
-				minimumResultsForSearch : "-1"
-			});
+			// select.select2({
+			// 	// 去掉这个属性可加上过滤器
+			// 	minimumResultsForSearch : "-1"
+			// });
 		}
 		
 		/* 初始化附件上传 */
