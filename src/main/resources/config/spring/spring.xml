@@ -19,6 +19,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:config/properties/datasource.properties</value>
+				<value>classpath:config/properties/ureport.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -26,7 +27,8 @@
 	<import resource="./application-datasource.xml"/>
 	<!-- mybatis -->
 	<import resource="./application-mybatis.xml"/>
-
+	<!-- mybatis -->
+	<import resource="./ureport-console-context.xml"/>
 	<import resource="./spring-activiti.xml"/>
 	<context:component-scan base-package="com.lhj">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>

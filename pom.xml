@@ -22,7 +22,7 @@
         <mysql-connector-java.version>5.1.28</mysql-connector-java.version>
         <lombok.version>1.18.4</lombok.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
-
+        <ureport2.version>2.2.9</ureport2.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,7 +66,11 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.bstek.ureport</groupId>
+            <artifactId>ureport2-console</artifactId>
+            <version>${ureport2.version}</version>
+        </dependency>
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>

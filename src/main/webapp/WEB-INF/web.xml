@@ -100,6 +100,14 @@
     </session-config>
 
 	<!-- spring相关配置 end -->
-
+	<!-- 报表 -->
+	<servlet>
+		<servlet-name>ureportServlet</servlet-name>
+		<servlet-class>com.bstek.ureport.console.UReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ureportServlet</servlet-name>
+		<url-pattern>/ureport/*</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
