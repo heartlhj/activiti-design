@@ -6,6 +6,8 @@ import lombok.Data;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: 李海军
@@ -47,10 +49,18 @@ public class ActivitiModelDto extends PageBean implements Serializable {
 
     private String descriptionCopy;
 
+    private Date deploymentTime;
+
+    private String processDefinitionId;
+
     private String[] modelIds;
+
+    private String[] deploymentIds;
 
     private String createDateStr;
     private String updateDateStr;
+
+    private Map<String, Object> paramMap;
 
     public String getCreateDateStr() {
         String res;

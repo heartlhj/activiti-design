@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
@@ -22,8 +22,8 @@
 	<div class="row">
 		<ul class="nav nav-pills" role="tablist">
 			  <li class="active"><a href="#model_Table"  data-toggle="tab">模型管理</a></li>
-			  <li><a href="#deployment_Table" data-toggle="tab">部署管理</a></li>
-			  <li><a href="#task_Table"  data-toggle="tab">待办管理</a></li>
+			  <li><a href="#deployment_Table" onclick="activiti.deployment.design.init()" data-toggle="tab">部署管理</a></li>
+			  <li><a href="#task_Table" onclick="activiti.task.design.init()" data-toggle="tab">待办管理</a></li>
 			</ul>
 	 </div>
 </div>
@@ -31,13 +31,13 @@
 <hr>
 <div class="tab-content">
     <div class="tab-pane active" id="model_Table">
-				<#include "model/modelList.ftl">
+		<#include "model/modelList.ftl">
     </div>
     <div class="tab-pane" id="deployment_Table">
-
+		<#include "model/deployment-list.ftl">
     </div>
     <div class="tab-pane" id="task_Table">
-
+		<#include "task/task-list.ftl">
     </div>
 </div>
 

@@ -11,10 +11,11 @@
 	
 	<script type="text/javascript">
         var logon = "<%=request.getSession().getAttribute("USER") %>";
+        var cont = "<%=request.getContextPath() %>";
         if (logon != null) {
-            window.location.href = "./main.do";
+            window.location.href = cont +"/main.do";
         }else{
-            window.location.href = "./index.do";
+            window.location.href = cont +"/index.do";
 		}
 	</script>
 	

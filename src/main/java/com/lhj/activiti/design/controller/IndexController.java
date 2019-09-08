@@ -35,6 +35,13 @@ public class IndexController {
         return pageView;
     }
 
+    @RequestMapping(value = "/")
+    public ModelAndView indexInt(HttpServletRequest request, HttpServletResponse response, Model model){
+        //业务逻辑开始
+        ModelAndView pageView = new ModelAndView("login");
+        return pageView;
+    }
+
     @RequestMapping(value = "/login/login")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response, Model model,
                               @RequestParam("username") String userName, @RequestParam("password") String password,

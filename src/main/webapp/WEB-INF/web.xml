@@ -4,10 +4,10 @@
 
 	<display-name>activiti-design</display-name>
 	
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	
+	<!--<welcome-file-list>-->
+		<!--<welcome-file>index.jsp</welcome-file>-->
+	<!--</welcome-file-list>-->
+	<!---->
 	<!-- 项目标识 -->
 	<context-param>
 		<param-name>webAppRootKey</param-name>
@@ -16,6 +16,7 @@
 	
 	<!-- spring相关配置 begin -->
 	<!-- 中文乱码处理，编码统一最好放最上面，最先加载，防止乱码 -->
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -28,7 +29,10 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
-
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
 	<!-- spring主配置 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -58,7 +62,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring-mvc</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
 	<!-- Modeler的Rest服务 -->

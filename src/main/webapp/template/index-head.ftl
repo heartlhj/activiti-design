@@ -7,6 +7,8 @@
 	<script type="text/javascript" src="${contextPath}/static/js/plug/loaders/blockui.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/static/js/plug/loaders/pace.min.js"></script>
 	<script type="text/javascript" src="${contextPath}/static/js/plug/angular.min.js"></script>
+	<script src="${contextPath}/static/layui/layui.js"></script>
+	<script src="${contextPath}/static/layui/lay/modules/layer.js"></script>
 	<link rel="stylesheet" href="${contextPath}/static/css/angular-csp.css">
 	<script type="text/javascript" src="${contextPath}/static/js/plug/bootstrap.js"></script>
 	<link rel="stylesheet" href="${contextPath}/static/css/bootstrap.css">
@@ -14,6 +16,10 @@
 	<script type="text/javascript" src="${contextPath}/static/js/plug/common.js"></script>
    	<script type="text/javascript" src="${contextPath}/static/js/plug/moment.min.js"></script>
    	<script type="text/javascript" src="${contextPath}/static/js/plug/bootbox.min.js"></script>
+
+	   <link rel="stylesheet" href="${contextPath}/static/layui/css/layui.css">
+    <link rel="stylesheet" href="${contextPath}/static/layui/css/modules/laydate/default/laydate.css">
+    <link rel="stylesheet" href="${contextPath}/static/layui/css/modules/layer/default/layer.css">
 
 	<link rel="stylesheet" href="${contextPath}/static/css/jquery-ui.css">
 	<link rel="stylesheet" href="${contextPath}/static/css/ui.jqgrid.css">
@@ -30,6 +36,7 @@
 	<script>
         var CONTEXT_PATH = '${contextPath!''}';
     </script>
+
 	<script type="text/javascript" src="${contextPath}/static/js/plug/helper.js"></script>
 	<script type="text/javascript" src="${contextPath}/static/js/plug/formExt.js"></script>
 	<script type="text/javascript" src="${contextPath}/static/js/plug/dataGrid.js"></script>

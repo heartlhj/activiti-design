@@ -1,7 +1,7 @@
 <!-- 中间按钮 start -->
 <div class="navbar navbar-default navbar-xs new-navbar">
     <div class="navbar-collapse collapse" id="navbar-filter">
-        <ul class="nav nav-tabs nav-tabs-solid" id="purContractInfo-clientBtnId">
+        <ul class="nav nav-tabs nav-tabs-solid" id="model-ul">
             <li><a href="javascript:activiti.model.design.create()"><i class="icon-plus2 position-left"></i>新增</a></li>
 			<li><a href="javascript:activiti.model.design.modify()"><i class="icon-pencil4 position-left"></i>编辑</a></li>
 			<li><a href="javascript:activiti.model.design.del()" ><i class="icon-x position-left"></i>删除</a></li>
@@ -20,8 +20,9 @@
        rowNum="10" pagerid="activiti-model-page1">
     <tr>
         <td display="false" displayName="Id" width="2px" propertyName="id" sortType="text" align="left">&nbsp;</td>
-        <td display="true" displayName="流程名称" width="190px" propertyName="name" sortType="text" align="left">&nbsp;</td>
+        <td display="true" displayName="流程名称" width="190px" propertyName="name" sortType="text" align="center">&nbsp;</td>
         <td display="true" displayName="创建日期" width="140px" propertyName="createTime" sortType="text" align="center" formatter="activiti.utils.formatDate">&nbsp;</td>
+        <td display="true" displayName="创建日期" width="140px" propertyName="createDateStr" sortType="text" align="center">&nbsp;</td>
         <td display="true" displayName="更新时间" width="140px" propertyName="lastUpdateTime" sortType="text" align="center" formatter="activiti.utils.formatDate">&nbsp;</td>
         <td display="true" displayName="内容"  width="560px" propertyName="metaInfo" sortType="text" align="left">&nbsp;</td>
         <td display="true" displayName="版本" width="70px" propertyName="version" sortType="text" align="center">&nbsp;</td>

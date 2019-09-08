@@ -276,7 +276,8 @@ var activiti = function() {
 				submitFn:submitFn,
 				paramObj:paramObj
 			};
-			
+			 var params = {};
+            params.params = this.ToJson(paramObj);
 			_modalWinObj[id] = obj;
 			modalClass = modalClass == null ? '' : modalClass;
 			var html = getModalHTML(eleId,eleContentId,modalClass);
@@ -285,6 +286,7 @@ var activiti = function() {
 			
 			$.ajax({
 				url : url,
+				data : params,
 				async : false,
 				success : function(msg) {
 					debugger;
