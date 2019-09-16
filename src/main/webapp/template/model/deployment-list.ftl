@@ -14,7 +14,7 @@
 
 
 <!-- 下面展示数据table start -->
-<table id="activiti-deployment-grid1" showCheck="true" height="400" idPropertyName="id"
+<table id="activiti-deployment-grid1" showCheck="true" height="400"  width="1140px"  idPropertyName="id"
        rowNum="10" pagerid="activiti-deployment-page1">
     <tr>
         <td display="false" displayName="Id" width="2px" propertyName="id" sortType="text" align="left">&nbsp;</td>

@@ -19,7 +19,11 @@
 		<property name="activityFontName" value="宋体"/>
 		<property name="labelFontName" value="宋体"/>
 		<property name="annotationFontName" value="宋体"/>
-
+		<property name="eventListeners">
+			<list>
+				<bean class="com.lhj.activiti.design.service.WorkflowEventListener" /><!--继承了ActivitiEventListener-->
+			</list>
+		</property>
 	</bean>
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />

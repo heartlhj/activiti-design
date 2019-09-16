@@ -110,7 +110,11 @@
 		<property name="exposeSpringMacroHelpers" value="true" />
 		<property name="requestContextAttribute" value="request" />
 	</bean>
-
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2"></property>
+	</bean>
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource"
 		p:basename="i18n/messages" />

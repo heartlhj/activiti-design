@@ -27,7 +27,7 @@ activiti.task.design = function() {
                 var width = null;
                 var heigth = null;
                 paramObj.selItem = selItem;
-                var submitFn = activiti.model.design.createCloseComeBack;//回调方法
+                var submitFn = activiti.task.design.createCloseComeBack;//回调方法
                 var modalClass = "modal-lg";
                 activiti.ShowModalWin(url, width, heigth, paramObj, submitFn, modalClass);
             }

@@ -2,10 +2,10 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration >
 <!-- 设置mysql驱动路径 -->
-<!--<classPathEntry location="C:\Users\75449\.m2\repository\mysql\mysql-connector-java\5.1.28\mysql-connector-java-5.1.28.jar" />-->
+<classPathEntry location="C:\Users\75449\.m2\repository\mysql\mysql-connector-java\5.1.28\mysql-connector-java-5.1.28.jar" />
 
 
-    <classPathEntry location="C:\Users\Administrator\.m2\repository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar" />
+   <!--<classPathEntry location="C:\Users\Administrator\.m2\repository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar" />-->
 
 
     <!-- 此处指定生成针对MyBatis3的DAO -->
@@ -15,9 +15,13 @@
     <property name="suppressAllComments" value="true" />  
   </commentGenerator>   
   <!-- jdbc连接信息 -->
-    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-    connectionURL="jdbc:oracle:thin:@localhost:1521:dams"
-    userId="DAMS" password="DAMS" />
+    <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"-->
+    <!--connectionURL="jdbc:mysql://localhost:3306/spaas-workflow-center"-->
+    <!--userId="DAMS" password="DAMS" />-->
+
+      <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                      connectionURL="jdbc:mysql://localhost:3306/spaas-workflow-center"
+                      userId="root" password="1234" />
     
     <!-- java类型处理器
         用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
@@ -37,14 +41,14 @@
     </javaTypeResolver>
     
     <!-- 生成模型的包名和位置（报错就把位置改成项目的名称） -->
-    <javaModelGenerator targetPackage="com.lhj.activiti.design.model" targetProject="E:\project\activiti-design\src\main\java" />
+    <javaModelGenerator targetPackage="com.lhj.activiti.design.model" targetProject="E:" />
     <!-- 生成映射文件的包名和位置 -->
-    <sqlMapGenerator targetPackage="com.lhj.activiti.design.mapper" targetProject="E:\project\activiti-design\src\main\java" />
+    <sqlMapGenerator targetPackage="com.lhj.activiti.design.mapper" targetProject="E:" />
     <!-- 生成DAO的类文件以及配置文件 -->
-    <javaClientGenerator targetPackage="com.lhj.activiti.design.dao" targetProject="E:\project\activiti-design\src\main\java" type="XMLMAPPER" />
+    <javaClientGenerator targetPackage="com.lhj.activiti.design.dao" targetProject="E:" type="XMLMAPPER" />
     <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
      <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 --> 
-    <table schema="" tableName="AC_USER" domainObjectName="User"
+    <table schema="" tableName="process_runtime_variable" domainObjectName="ProcessRuntimeVariable"
     		enableCountByExample="false"  enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false" >

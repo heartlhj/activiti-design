@@ -36,10 +36,10 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/")
-    public ModelAndView indexInt(HttpServletRequest request, HttpServletResponse response, Model model){
+    public String indexInt(HttpServletRequest request, HttpServletResponse response, Model model){
         //业务逻辑开始
-        ModelAndView pageView = new ModelAndView("login");
-        return pageView;
+        ModelAndView pageView = new ModelAndView("index");
+        return "index";
     }
 
     @RequestMapping(value = "/login/login")
