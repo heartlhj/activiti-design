@@ -36,7 +36,7 @@ activiti.task.finish = function() {
             var url = CONTEXT_PATH + "/task/finish.do";
             activiti.InvokeMethodAsyn(url,params,function(msg){
                 if("success" == msg.status){
-                    activiti.SubmitModalWin(URL,params);
+                    activiti.model.design.init()
                     activiti.Alert("操作成功");
                 }else{
                     activiti.Alert(msg.message);

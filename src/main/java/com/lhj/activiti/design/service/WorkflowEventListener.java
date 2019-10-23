@@ -64,7 +64,7 @@ public class WorkflowEventListener implements ActivitiEventListener {
         }
     }
 
-    /*
+    /**
      *
      * @Description: 任务创建
      * @ param [event]
@@ -89,7 +89,7 @@ public class WorkflowEventListener implements ActivitiEventListener {
         return;
     }
 
-    /*
+    /**
      *
      * @Description: 流程结束
      * @ param [event]

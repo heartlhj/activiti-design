@@ -1,7 +1,6 @@
 package com.lhj.activiti.design.dean;
 
 import lombok.Data;
-import org.activiti.engine.task.DelegationState;
 
 import java.io.Serializable;
 import java.util.Date;

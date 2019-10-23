@@ -13,7 +13,7 @@ activiti.task.design = function() {
             });
 
         },
-        //新增模型
+        //审批
         finish : function () {
             var rowIds = grid1.getCheckedIds();
             if (rowIds.length <= 0) {
